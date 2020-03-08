@@ -19,14 +19,14 @@ import java.util.List;
 
 public class Spontaneous extends AppCompatActivity {
     ImageView profileBtn;
-    int[] profilePic = {R.drawable.fella, R.drawable.fella, R.drawable.fella};
+    int[] profilePic = {R.drawable.stock_1, R.drawable.fella, R.drawable.stock_0};
 //    String[] name = {"Mackenzie", "Hyacinth", "Tia"};
 //    String[] workout = {"Sitting", "Jogging", "Biking"};
 //    String[] location = {"Vancouver", "Toronto", "Grand Forks"};
 //    String [] fitnessLevel = {"3", "1", "4"};
 
 //    List<Profile> matches;
-    List<Profile> matches = new ArrayList<>();
+    List<Profile> matches;
 
 
 
@@ -35,7 +35,7 @@ public class Spontaneous extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spontaneous);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        matches = new Profile().pullAllUsers();
+        matches = new Profile().getMatchList();
 //        matches.add(new Profile());
 //        matches.add(new Profile());
 //        matches.add(new Profile());
@@ -78,12 +78,12 @@ public class Spontaneous extends AppCompatActivity {
             TextView textView_location = view.findViewById(R.id.locationInput);
             TextView textView_fitnessLevel = view.findViewById(R.id.fitnessLevelInput);
 
-//            imageView.setImageResource(profilePic[i]);
-//            textView_name.setText(matches.get(i).getName());//name[i]);
-//            textView_workout.setText("Preferred Workout:  " + matches.get(i).getWorkout_pref());//+ workout[i]);
-//            textView_location.setText("City:  " + matches.get(i).getCity()); //+ location[i]);
-//            textView_fitnessLevel.setText("Fitness Level:  " + matches.get(i).getFitness_lvl());//+ fitnessLevel[i]);
-                textView_fitnessLevel.setText("List length:  " + matches.size());//+ fitnessLevel[i]);
+            imageView.setImageResource(profilePic[i]);
+            textView_name.setText(matches.get(i).getName());//name[i]);
+            textView_workout.setText("Preferred Workout:  " + matches.get(i).getWorkout_pref());//+ workout[i]);
+            textView_location.setText("City:  " + matches.get(i).getCity()); //+ location[i]);
+            textView_fitnessLevel.setText("Fitness Level:  " + matches.get(i).getFitness_lvl());//+ fitnessLevel[i]);
+//                textView_fitnessLevel.setText("List length:  " + matches.size());//+ fitnessLevel[i]);
 
 
             return view;

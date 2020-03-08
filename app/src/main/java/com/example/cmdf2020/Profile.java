@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Profile {
     private String name, id, workout_pref, city;
@@ -95,6 +96,7 @@ public class Profile {
                                 Map<String, Object> map = document.getData();
                                 Profile currentUser = new Profile();
                                 currentUser.setProfileFromMap(map);
+                                Log.d("onComplete pullAllUsers", currentUser.name);
                                 allUsers.add(currentUser);
                             }
                         } else {
@@ -102,6 +104,9 @@ public class Profile {
                         }
                     }
                 });
+
+        Log.d("pullAllUsers", allUsers.size() + "");
+
         return allUsers;
     }
 
@@ -197,10 +202,17 @@ public class Profile {
 
     public List<Profile> getMatchList() {
         List<Profile> profiles = pullAllUsers();
+        Log.d("getMatchList", "" + profiles.size());
         List<Profile> matches = new ArrayList<>();
-//        matches.add(this);
-//        matches.add(new Profile());
-//        matches.add(new Profile());
+
+        Profile sample1 = new Profile("Maxine", "ID", "Jog", "Vancouver", 17, 4, false, true, false);
+        Profile sample2 = new Profile("Hana", "ID", "Jog", "Richmond", 25, 3, false, false, false);
+        Profile sample3 = new Profile("Parmis", "ID", "Yoga", "Vancouver", 23, 3, false, true, false);
+
+        matches.add(sample1);
+        matches.add(sample2);
+        matches.add(sample3);
+
         for(Profile p : profiles) {
             if (p.id != this.id) {
                 matches.add(p);
@@ -211,4 +223,6 @@ public class Profile {
         }
         return matches;
     }
+
+
 }
