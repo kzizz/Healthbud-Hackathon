@@ -31,11 +31,11 @@ public class MainActivity extends AppCompatActivity {
         emailId = findViewById(R.id.email);
         passwd = findViewById(R.id.password);
         // add btnSignIn findViewById
-        btnSignIn.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                String emailID = emailId.getText().toString();
-            }
-        });
+//        btnSignIn.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view){
+//                String emailID = emailId.getText().toString();
+//            }
+//        });
     }
 }
