@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class Profile {
     private String name, workout_pref, city;
-    private int age, fitness_lvl, workout_freq;
+    private int age, fitness_lvl;
     boolean is_mom, is_senior, is_student, is_injured;
     FirebaseFirestore db;
     String id;
@@ -22,17 +22,16 @@ public class Profile {
 
     public Profile(FirebaseFirestore db,
                    String name, String workout_pref, String city,
-                   int age, int fitness_lvl, int workout_freq,
-                   boolean is_mom, boolean is_senior, boolean is_student, boolean is_injured) {
+                   int age, int fitness_lvl,
+                   boolean is_mom, boolean is_student, boolean is_injured) {
         this.db = db; // assume a firestore database object is passed in
         this.name = name;
         this.workout_pref = workout_pref;
         this.city = city;
         this.age = age;
         this.fitness_lvl = fitness_lvl;
-        this.workout_freq = workout_freq;
         this.is_mom = is_mom;
-        this.is_senior = is_senior;
+        this.is_senior = age > 65;
         this.is_student = is_student;
         this.is_injured = is_injured;
     }
@@ -44,11 +43,15 @@ public class Profile {
         this.city = "city";
         this.age = 0;
         this.fitness_lvl = 0;
-        this.workout_freq = 0;
         this.is_mom = true;
         this.is_senior = true;
         this.is_student = true;
         this.is_injured = true;
+    }
+
+    public Profile(FirebaseFirestore db, HashMap<String, Object> profile) {
+        this.db = db;
+        setProfileFromMap(profile);
     }
 
     public String getName() {
@@ -93,4 +96,33 @@ public class Profile {
         this.fitness_lvl = fitness;
         // TODO: update database
     }
+
+    public boolean is_mom() {
+        return is_mom;
+    }
+
+    public void set_mom_status(boolean is_mom) {
+        this.is_mom = is_mom;
+    }
+
+    public boolean is_senior() {
+        return is_senior;
+    }
+
+    public void set_senior_status(boolean is_mom) {
+        this.is_mom = is_mom;
+    }
+
+    private void setProfileFromMap(HashMap<String, Object> profile) {
+        this.name = (String) profile.get("name");
+        this.workout_pref = (String) profile.get("workoutPreference");
+        this.city = (String) profile.get("Location");
+        this.age = (int) profile.get("age");
+        this.fitness_lvl = (int) profile.get("fitnessLevel");
+        this.is_mom = (boolean) profile.get("isMom");
+        this.is_senior = (boolean) profile.get("isSenior");
+        this.is_student = (boolean) profile.get("isStudent");
+        this.is_injured = (boolean) profile.get("isInjured");
+    }
+
 }
