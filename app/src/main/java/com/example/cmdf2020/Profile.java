@@ -19,13 +19,12 @@ public class Profile {
     boolean is_mom, is_senior, is_student, is_injured;
     FirebaseFirestore db;
     String id;
-    final String TAG = "helloworld";
 
-    public Profile(FirebaseFirestore db,
-                   String name, String workout_pref, String city,
+
+    public Profile(String name, String workout_pref, String city,
                    int age, int fitness_lvl,
                    boolean is_mom, boolean is_student, boolean is_injured) {
-        this.db = db; // assume a firestore database object is passed in
+        this.db = FirebaseFirestore.getInstance();
         this.name = name;
         this.workout_pref = workout_pref;
         this.city = city;
@@ -37,8 +36,8 @@ public class Profile {
         this.is_injured = is_injured;
     }
 
-    public Profile(FirebaseFirestore db) {
-        this.db = db; // assume a firestore database object is passed in
+    public Profile() {
+        this.db = FirebaseFirestore.getInstance();
         this.name = "name";
         this.workout_pref = "workout_pref";
         this.city = "city";
@@ -50,13 +49,15 @@ public class Profile {
         this.is_injured = true;
     }
 
-    public Profile(FirebaseFirestore db, HashMap<String, Object> profile) {
-        this.db = db;
+    public Profile(HashMap<String, Object> profile) {
+        this.db = FirebaseFirestore.getInstance();
         setProfileFromMap(profile);
     }
     public void pullData(String UID){
         DocumentReference docRef = db.collection("users").document(UID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            private static final String TAG = "";
+
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -77,23 +78,26 @@ public class Profile {
     }
 
     public List<Profile> pullAllUsers(){
-        List<Profile> allUsers = new ArrayList<Profile>();
+        final List<Profile> allUsers = new ArrayList<Profile>();
         db.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    private static final String TAG = "";
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Map<String, Object> map = document.getData();
-//                                Profile currentUser = new Profile();
-//                                currentUser.setProfileFromMap(map);
+                                Profile currentUser = new Profile();
+                                currentUser.setProfileFromMap(map);
+                                allUsers.add(currentUser);
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
+        return allUsers;
     }
 
     public String getName() {
@@ -145,17 +149,32 @@ public class Profile {
 
     public void set_mom_status(boolean is_mom) {
         this.is_mom = is_mom;
+        // TODO: update database
     }
 
     public boolean is_senior() {
         return is_senior;
     }
 
-    public void set_senior_status(boolean is_mom) {
-        this.is_mom = is_mom;
+    public boolean is_student() {
+        return is_student;
     }
 
+    public void set_student_status(boolean is_student) {
+        this.is_student = is_student;
+        // TODO: update database
+    }
+
+    public boolean is_injured() {
+        return is_injured;
+    }
+
+    public void set_injured_status(boolean is_injured) {
+        this.is_injured = is_injured;
+        // TODO: update database
+    }
     private void setProfileFromMap(Map<String, Object> profile) {
+
         this.name = (String) profile.get("name");
         this.workout_pref = (String) profile.get("workoutPreference");
         this.city = (String) profile.get("Location");
@@ -166,5 +185,4 @@ public class Profile {
         this.is_student = (boolean) profile.get("isStudent");
         this.is_injured = (boolean) profile.get("isInjured");
     }
-
 }
