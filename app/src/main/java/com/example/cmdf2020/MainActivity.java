@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         emailId = findViewById(R.id.email);
         passwd = findViewById(R.id.password);
-        // add btnSignIn findViewById
+        btnSignIn = findViewById(R.id.loginButton);
         btnSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
                 } else if (emailID.isEmpty() && password.isEmpty()){
                     Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
                 } else if (!(emailID.isEmpty() && password.isEmpty())){
-                    firebaseAuth.createUserWithEmailAndPassword(emailID,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
+                    firebaseAuth.signInWithEmailAndPassword(emailID,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
 
                             if (!task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this.getApplicationContext(),
-                                        "SignUp unsuccessful: " + task.getException().getMessage(),
+                                        "Unsuccessful Login" + task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 startActivity(new Intent(MainActivity.this, Spontaneous.class));
@@ -64,6 +64,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
-        });      
+        });
     }
 }
