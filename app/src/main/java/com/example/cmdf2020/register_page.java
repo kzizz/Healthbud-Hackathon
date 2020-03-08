@@ -10,7 +10,6 @@ import android.widget.TextView;
 public class register_page extends AppCompatActivity {
      TextView btnLogin;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

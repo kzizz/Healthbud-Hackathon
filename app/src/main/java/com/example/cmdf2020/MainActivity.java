@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView btnSignUp;
     TextView signIn;
     FirebaseAuth firebaseAuth;
+    Button btnbypass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +40,23 @@ public class MainActivity extends AppCompatActivity {
         passwd = findViewById(R.id.password);
         btnSignIn = findViewById(R.id.loginButton);
         btnSignUp = findViewById(R.id.signUp);
+
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, register_page.class));
             }
         });
+
+        //button to bypass the login system
+        btnbypass = findViewById(R.id.button);
+        btnbypass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Spontaneous.class));
+            }
+        });
+
         btnSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

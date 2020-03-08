@@ -3,19 +3,24 @@ package com.example.cmdf2020;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class Spontaneous extends AppCompatActivity {
     ImageView profileBtn;
+    int[] profilePic = {R.drawable.fella};
+    String[] name = {"Tianna"};
+    String[] workout = {"Sitting"};
+    String[] location = {"Vancouver"};
+    String [] fitnessLevel = {"3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,43 @@ public class Spontaneous extends AppCompatActivity {
                 startActivity(new Intent(Spontaneous.this, userProfile.class));
             }
         });
-        
+        ListView listView = findViewById(R.id.matchList);
+        CustomAdapter customAdapter = new CustomAdapter();
+        listView.setAdapter(customAdapter);
 
+    }
+    class CustomAdapter extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return profilePic.length;
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = getLayoutInflater().inflate(R.layout.linearlayout,null);
+            ImageView imageView = view.findViewById(R.id.profilePic);
+            TextView textView_name = view.findViewById(R.id.userName);
+            TextView textView_workout = view.findViewById(R.id.workoutInput);
+            TextView textView_location = view.findViewById(R.id.locationInput);
+            TextView textView_fitnessLevel = view.findViewById(R.id.fitnessLevelInput);
+
+            imageView.setImageResource(profilePic[i]);
+            textView_name.setText(name[i]);
+            textView_workout.setText(workout[i]);
+            textView_location.setText(location[i]);
+            textView_fitnessLevel.setText(fitnessLevel[i]);
+            return view;
+        }
     }
 }
