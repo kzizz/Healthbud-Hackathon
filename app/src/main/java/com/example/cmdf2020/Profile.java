@@ -8,20 +8,23 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.*;
+
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class Profile {
-    private String name, workout_pref, city;
+    private String name, id, workout_pref, city;
     private int age, fitness_lvl;
     boolean is_mom, is_senior, is_student, is_injured;
     FirebaseFirestore db;
     String id;
 
-    public Profile(String name, String workout_pref, String city,
+    public Profile(String name, String id, String workout_pref, String city,
                    int age, int fitness_lvl,
                    boolean is_mom, boolean is_student, boolean is_injured) {
         this.db = FirebaseFirestore.getInstance();
+        this.id = id;
         this.name = name;
         this.workout_pref = workout_pref;
         this.city = city;
@@ -36,6 +39,7 @@ public class Profile {
     public Profile() {
         this.db = FirebaseFirestore.getInstance();
         this.name = "name";
+        this.id = "id";
         this.workout_pref = "workout_pref";
         this.city = "city";
         this.age = 0;
@@ -48,6 +52,7 @@ public class Profile {
 
     public Profile(HashMap<String, Object> profile) {
         this.db = FirebaseFirestore.getInstance();
+        // TODO: add grabbing ID
         setProfileFromMap(profile);
     }
 
@@ -134,5 +139,9 @@ public class Profile {
         this.is_senior = (boolean) profile.get("isSenior");
         this.is_student = (boolean) profile.get("isStudent");
         this.is_injured = (boolean) profile.get("isInjured");
+    }
+
+    public List<Profile> getMatchList(List<Profile> profiles) {
+        return null;
     }
 }
