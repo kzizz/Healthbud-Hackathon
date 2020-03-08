@@ -4,21 +4,24 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.*;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Profile {
     private String name, id, workout_pref, city;
     private int age, fitness_lvl;
     boolean is_mom, is_senior, is_student, is_injured;
     FirebaseFirestore db;
-    String id;
+    final int MAX_MATCHES = 3;
 
     public Profile(String name, String id, String workout_pref, String city,
                    int age, int fitness_lvl,
@@ -54,6 +57,52 @@ public class Profile {
         this.db = FirebaseFirestore.getInstance();
         // TODO: add grabbing ID
         setProfileFromMap(profile);
+    }
+    public void pullData(String UID){
+        DocumentReference docRef = db.collection("users").document(UID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            private static final String TAG = "";
+
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+
+                    if (document.exists()) {
+                        Map<String, Object> map = document.getData();
+                        setProfileFromMap(map);
+                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d(TAG, "No such document");
+                    }
+                } else {
+                    Log.d(TAG, "get failed with ", task.getException());
+                }
+            }
+        });
+    }
+
+    public List<Profile> pullAllUsers(){
+        final List<Profile> allUsers = new ArrayList<Profile>();
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    private static final String TAG = "";
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Map<String, Object> map = document.getData();
+                                Profile currentUser = new Profile();
+                                currentUser.setProfileFromMap(map);
+                                allUsers.add(currentUser);
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        return allUsers;
     }
 
     public String getName() {
@@ -129,19 +178,37 @@ public class Profile {
         this.is_injured = is_injured;
         // TODO: update database
     }
-    private void setProfileFromMap(HashMap<String, Object> profile) {
+    private void setProfileFromMap(Map<String, Object> profile) {
+//        int i = 0;
+//        this.name = "testName";
+//        for (String s : profile.keySet()) {
+//            this.age = i++;
+//        }
         this.name = (String) profile.get("name");
         this.workout_pref = (String) profile.get("workoutPreference");
         this.city = (String) profile.get("Location");
-        this.age = (int) profile.get("age");
-        this.fitness_lvl = (int) profile.get("fitnessLevel");
+//        this.age = (int) profile.get("age");
+//        this.fitness_lvl = (int) profile.get("fitnessLevel");
         this.is_mom = (boolean) profile.get("isMom");
         this.is_senior = (boolean) profile.get("isSenior");
         this.is_student = (boolean) profile.get("isStudent");
         this.is_injured = (boolean) profile.get("isInjured");
     }
 
-    public List<Profile> getMatchList(List<Profile> profiles) {
-        return null;
+    public List<Profile> getMatchList() {
+        List<Profile> profiles = pullAllUsers();
+        List<Profile> matches = new ArrayList<>();
+//        matches.add(this);
+//        matches.add(new Profile());
+//        matches.add(new Profile());
+        for(Profile p : profiles) {
+            if (p.id != this.id) {
+                matches.add(p);
+            }
+            if (matches.size() == MAX_MATCHES) {
+                return matches;
+            }
+        }
+        return matches;
     }
 }
