@@ -1,6 +1,8 @@
 package com.example.cmdf2020;
 
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Bundle;
@@ -35,6 +37,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 String emailID = emailId.getText().toString();
+                String password = passwd.getText().toString();
+                if(emailID.isEmpty()) {
+                    emailId.setError("Provide your Email First");
+                    emailId.requestFocus();
+                } else if (password.isEmpty()) {
+                    passwd.setError("Set your password");
+                    passwd.requestFocus();
+                } else if (emailID.isEmpty() && password.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
+                } else if (!(emailID.isEmpty() && password.isEmpty())){
+                    firebaseAuth.createUserWithEmailAndPassword(emailID,password).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
+                        @Override
+                        public void onComplete(@NonNull Task task) {
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this.getApplicationContext(),
+                                        "SignUp unsuccessful: " + task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                startActivity(new Intent(MainActivity.this, Spontaneous.class));
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
