@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userProfile"
-    android:background="@drawable/gradient">
+    android:background="@drawable/gradient2"
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#80bbff"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,13 +28,6 @@
             app:srcCompat="@drawable/ic_action_spontaneous" />
 
         <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/healthbudlogovectorimgonly" />
-
-        <ImageView
             android:id="@+id/profileButton"
             android:layout_width="60dp"
             android:layout_height="70dp"
@@ -43,52 +37,26 @@
             app:srcCompat="@drawable/ic_action_profile" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/divider3"
-        android:layout_width="409dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="70dp"
-        android:background="@color/colorPrimaryDark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="288dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="61dp"
-        android:layout_marginLeft="61dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginRight="62dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/healthbud" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/nameCard"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="50dp"
-        app:cardBackgroundColor="@color/colorPrimaryDark"
+        android:layout_width="350dp"
+        android:layout_height="315dp"
+        android:layout_marginTop="20dp"
+        app:cardBackgroundColor="#80bbff"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userPhoto">
+        app:layout_constraintTop_toTopOf="parent">
 
 
-
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Monica Geller"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="369dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#004E83DC"
+            app:srcCompat="@drawable/userprofilepic" />
 
 
     </androidx.cardview.widget.CardView>
@@ -97,43 +65,75 @@
         android:id="@+id/userLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginLeft="170dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:text="New York, NY , USA"
-        android:textSize="16sp"
+        android:layout_marginEnd="170dp"
+        android:layout_marginRight="170dp"
+        android:text="[Location]"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameCard" />
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
     <TextView
-        android:id="@+id/userBio"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:text="Hello! I am Monica Geller and I am so excited to be using this amazing app!!"
+        android:id="@+id/userAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="210dp"
+        android:layout_marginLeft="210dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="210dp"
+        android:layout_marginRight="210dp"
+        android:text="[Age]"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userLocation" />
 
-    <ImageView
-        android:id="@+id/userPhoto"
-        android:layout_width="145dp"
-        android:layout_height="122dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginLeft="137dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginRight="137dp"
+    <TextView
+        android:id="@+id/userFitnessLevelInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:layout_marginLeft="152dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="152dp"
+        android:layout_marginRight="152dp"
+        android:text="[Fitness Level]"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider3"
-        app:srcCompat="@drawable/ic_action_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/userAge" />
+
+    <TextView
+        android:id="@+id/userWorkoutPref"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="[Workoutpref]"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userFitnessLevelInput" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="164dp"
+        android:layout_marginLeft="164dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="164dp"
+        android:layout_marginRight="164dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="[Name]"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameCard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

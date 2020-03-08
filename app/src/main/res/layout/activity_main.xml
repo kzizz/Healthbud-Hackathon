@@ -44,13 +44,14 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="19dp"
+        android:layout_height="30dp"
         android:layout_marginStart="140dp"
         android:layout_marginLeft="140dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="140dp"
         android:layout_marginRight="140dp"
         android:text="Welcome to HealthBud!"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
