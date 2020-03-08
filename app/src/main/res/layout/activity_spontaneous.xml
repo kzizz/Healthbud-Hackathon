@@ -32,7 +32,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="#80bbff"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,13 +46,6 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/ic_action_spontaneous" />
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/healthbudlogovectorimgonly" />
 
         <ImageView
             android:id="@+id/profileButton"
@@ -75,6 +68,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="HealthBuds For You"
+        android:textColor="@android:color/secondary_text_light"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
