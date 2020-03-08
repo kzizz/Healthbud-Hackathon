@@ -25,32 +25,9 @@ public class Profile {
                    int age, int fitness_lvl, int workout_freq,
                    boolean is_mom, boolean is_senior, boolean is_student, boolean is_injured) {
         this.db = db; // assume a firestore database object is passed in
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", name);
-        user.put("workout_pref", workout_pref);
-        user.put("city", city);
-        user.put("age", age);
-        user.put("fitness level", fitness_lvl);
-        user.put("workout_freq", workout_freq);
-        user.put("is_mom", is_mom);
-        user.put("is_senior", is_senior);
-        user.put("is_injured", is_injured);
-
-        db.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-            }
-        })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                    }
-                });
     }
 
-    public String name() {
-        return db.collection("users").document()
+    public String getName() {
+
     }
 }
