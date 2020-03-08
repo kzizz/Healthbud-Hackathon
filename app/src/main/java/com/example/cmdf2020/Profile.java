@@ -17,14 +17,11 @@ public class Profile {
     boolean is_mom, is_senior, is_student, is_injured;
     FirebaseFirestore db;
     String id;
-    final String TAG = "helloworld";
 
-
-    public Profile(FirebaseFirestore db,
-                   String name, String workout_pref, String city,
+    public Profile(String name, String workout_pref, String city,
                    int age, int fitness_lvl,
                    boolean is_mom, boolean is_student, boolean is_injured) {
-        this.db = db; // assume a firestore database object is passed in
+        this.db = FirebaseFirestore.getInstance();
         this.name = name;
         this.workout_pref = workout_pref;
         this.city = city;
@@ -36,8 +33,8 @@ public class Profile {
         this.is_injured = is_injured;
     }
 
-    public Profile(FirebaseFirestore db) {
-        this.db = db; // assume a firestore database object is passed in
+    public Profile() {
+        this.db = FirebaseFirestore.getInstance();
         this.name = "name";
         this.workout_pref = "workout_pref";
         this.city = "city";
@@ -49,8 +46,8 @@ public class Profile {
         this.is_injured = true;
     }
 
-    public Profile(FirebaseFirestore db, HashMap<String, Object> profile) {
-        this.db = db;
+    public Profile(HashMap<String, Object> profile) {
+        this.db = FirebaseFirestore.getInstance();
         setProfileFromMap(profile);
     }
 
@@ -103,16 +100,30 @@ public class Profile {
 
     public void set_mom_status(boolean is_mom) {
         this.is_mom = is_mom;
+        // TODO: update database
     }
 
     public boolean is_senior() {
         return is_senior;
     }
 
-    public void set_senior_status(boolean is_mom) {
-        this.is_mom = is_mom;
+    public boolean is_student() {
+        return is_student;
     }
 
+    public void set_student_status(boolean is_student) {
+        this.is_student = is_student;
+        // TODO: update database
+    }
+
+    public boolean is_injured() {
+        return is_injured;
+    }
+
+    public void set_injured_status(boolean is_injured) {
+        this.is_injured = is_injured;
+        // TODO: update database
+    }
     private void setProfileFromMap(HashMap<String, Object> profile) {
         this.name = (String) profile.get("name");
         this.workout_pref = (String) profile.get("workoutPreference");
@@ -124,5 +135,4 @@ public class Profile {
         this.is_student = (boolean) profile.get("isStudent");
         this.is_injured = (boolean) profile.get("isInjured");
     }
-
 }
