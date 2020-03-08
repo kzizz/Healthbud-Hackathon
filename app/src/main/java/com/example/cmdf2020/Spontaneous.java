@@ -27,6 +27,7 @@ public class Spontaneous extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spontaneous);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         profileBtn = findViewById(R.id.profileBtn);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,4 +74,8 @@ public class Spontaneous extends AppCompatActivity {
             return view;
         }
     }
-}
+
+
+    }
+
+
