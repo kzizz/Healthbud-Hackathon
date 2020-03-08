@@ -2,17 +2,22 @@ package com.example.cmdf2020;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,9 +52,12 @@ public class Spontaneous extends AppCompatActivity {
                 startActivity(new Intent(Spontaneous.this, userProfile.class));
             }
         });
+        
         ListView listView = findViewById(R.id.matchList);
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
+
+
 
     }
     class CustomAdapter extends BaseAdapter{
@@ -72,6 +80,7 @@ public class Spontaneous extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.linearlayout,null);
+
             ImageView imageView = view.findViewById(R.id.profilePic);
             TextView textView_name = view.findViewById(R.id.userName);
             TextView textView_workout = view.findViewById(R.id.workoutInput);
@@ -88,8 +97,10 @@ public class Spontaneous extends AppCompatActivity {
 
             return view;
         }
+
     }
 
 }
+
 
 
