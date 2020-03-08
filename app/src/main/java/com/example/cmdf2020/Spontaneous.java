@@ -16,11 +16,11 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Spontaneous extends AppCompatActivity {
     ImageView profileBtn;
-    int[] profilePic = {R.drawable.fella};
-    String[] name = {"Tianna"};
-    String[] workout = {"Sitting"};
-    String[] location = {"Vancouver"};
-    String [] fitnessLevel = {"3"};
+    int[] profilePic = {R.drawable.fella, R.drawable.fella, R.drawable.fella};
+    String[] name = {"Mackenzie", "Hyacinth", "Tia"};
+    String[] workout = {"Sitting", "Jogging", "Biking"};
+    String[] location = {"Vancouver", "Toronto", "Grand Forks"};
+    String [] fitnessLevel = {"3", "1", "4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class Spontaneous extends AppCompatActivity {
         setContentView(R.layout.activity_spontaneous);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        profileBtn = findViewById(R.id.profileBtn);
+        profileBtn = findViewById(R.id.profileButton);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,9 +68,9 @@ public class Spontaneous extends AppCompatActivity {
 
             imageView.setImageResource(profilePic[i]);
             textView_name.setText(name[i]);
-            textView_workout.setText(workout[i]);
-            textView_location.setText(location[i]);
-            textView_fitnessLevel.setText(fitnessLevel[i]);
+            textView_workout.setText("Preferred Workout:  " + workout[i]);
+            textView_location.setText("City:  " + location[i]);
+            textView_fitnessLevel.setText("Fitness Level:  " + fitnessLevel[i]);
             return view;
         }
     }
