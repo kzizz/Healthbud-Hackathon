@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+<<<<<<< HEAD
         <activity android:name=".Spontaneous"></activity>
+=======
+        <activity android:name=".userProfile"></activity>
+>>>>>>> f58f9e986be8b0f42d9ad929f87b3213c7ab766a
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
