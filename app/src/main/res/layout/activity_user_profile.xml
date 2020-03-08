@@ -5,4 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".userProfile"
-    android:background="@drawable/background"/>
+    android:background="@drawable/background">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="216dp"
+        android:layout_height="404dp"
+        app:srcCompat="@drawable/user"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="154dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
