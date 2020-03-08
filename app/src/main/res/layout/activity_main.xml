@@ -85,4 +85,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/healthbudlogovector" />
 
+    <TextView
+        android:id="@+id/signUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="169dp"
+        android:layout_marginLeft="169dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="169dp"
+        android:layout_marginRight="169dp"
+        android:text="New User? Sign up"
+        android:textStyle="bold"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
