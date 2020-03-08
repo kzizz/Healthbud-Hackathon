@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     public EditText emailId, passwd;
     Button btnSignIn;
-    Button btnSignUp;
+    TextView btnSignUp;
     TextView signIn;
     FirebaseAuth firebaseAuth;
 
@@ -38,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         emailId = findViewById(R.id.email);
         passwd = findViewById(R.id.password);
         btnSignIn = findViewById(R.id.loginButton);
+        btnSignUp = findViewById(R.id.signUp);
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, register_page.class));
+            }
+        });
         btnSignIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -65,10 +72,14 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                 } else {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
+
     }
 }
