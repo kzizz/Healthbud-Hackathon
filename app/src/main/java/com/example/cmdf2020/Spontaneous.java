@@ -16,7 +16,8 @@ public class Spontaneous extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spontaneous);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        
+
 
     }
+
 }
