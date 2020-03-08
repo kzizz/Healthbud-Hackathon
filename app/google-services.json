@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "66064598521",
+    "firebase_url": "https://cmd-2020.firebaseio.com",
+    "project_id": "cmd-2020",
+    "storage_bucket": "cmd-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:66064598521:android:4d11c2bec42ffc1834a928",
+        "android_client_info": {
+          "package_name": "com.example.cmdf2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "66064598521-olccc5duhuskia0ik1k8tj4m648q55a7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb3D6niDQ4Cba4NeE-U_A2Sl040sRSCrw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "66064598521-olccc5duhuskia0ik1k8tj4m648q55a7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
