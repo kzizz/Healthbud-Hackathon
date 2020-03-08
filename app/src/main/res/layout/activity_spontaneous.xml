@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     tools:context=".Spontaneous">
 
     <View
@@ -17,35 +18,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="288dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginLeft="62dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginRight="62dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/healthbud" />
-
-    <ImageView
         android:id="@+id/imageView5"
         android:layout_width="43dp"
         android:layout_height="45dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:contentDescription="TODO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_messages"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/ic_action_messages" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/colorPrimaryDark"
@@ -63,11 +48,25 @@
             android:layout_marginStart="323dp"
             android:layout_marginLeft="323dp"
             android:layout_marginTop="9dp"
-            android:contentDescription="TODO"
             android:clickable="true"
+            android:contentDescription="TODO"
             app:srcCompat="@drawable/ic_action_profile" />
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/matchList"
+        android:layout_width="410dp"
+        android:layout_height="516dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
